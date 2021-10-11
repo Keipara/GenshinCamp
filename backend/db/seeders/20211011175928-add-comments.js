@@ -12,6 +12,8 @@ module.exports = {
         isBetaMember: false
       }], {});
     */
+      return queryInterface.bulkInsert('Comments', [{
+      }], {});
   },
 
   down: (queryInterface, Sequelize) => {
@@ -20,7 +22,7 @@ module.exports = {
       Return a promise to correctly handle asynchronicity.
 
       Example:
-      return queryInterface.bulkDelete('People', null, {});
-    */
+      */
+   return queryInterface.bulkDelete('Comments', null, {});
   }
 };
