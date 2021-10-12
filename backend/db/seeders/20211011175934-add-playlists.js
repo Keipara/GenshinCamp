@@ -11,9 +11,9 @@ module.exports = {
         name: 'John Doe',
         isBetaMember: false
       }], {});
-    */
       return queryInterface.bulkInsert('Playlists', [{
       }], {});
+    */
   },
 
   down: (queryInterface, Sequelize) => {
