@@ -1,0 +1,14 @@
+.logout-button {
+}
+
+.profile-dropdown {
+    list-style-type: none;
+    padding-inline-start: 0px;
+
+}
+
+.dropdown-div {
+    position: relative;
+    left:-20px;
+
+}

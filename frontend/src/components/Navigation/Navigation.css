@@ -2,11 +2,22 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
 }
 
-button {
-    height: 2vh;
-    width: 10vh;
+.left-nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 15vh;
+    justify-content: space-between;
+}
+.right-nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 20vh;
+    justify-content: space-between;
 }
 
 img {
