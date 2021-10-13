@@ -19,4 +19,17 @@ router.get('/discover', asyncHandler(async function(_req, res) {
     return res.json(songs);
   }));
 
+router.get('/artist/:userId(\\d+)', asyncHandler(async function(req, res) {
+    const userId = parseInt(req.params.userId, 10);
+    const songs = await Song.findAll({
+      where: {
+        userId: userId
+      },
+      include: [{
+        model: User
+      }]
+    });
+    return res.json(songs);
+  }));
+
 module.exports = router;
