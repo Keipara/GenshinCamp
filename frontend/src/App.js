@@ -6,6 +6,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import SongBrowser from "./components/MainPage/index";
+import UploadPage from "./components/UploadPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,10 +23,16 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route
-            path={["/discover", "/song", "/song/:songId"]}exact>
-        <SongBrowser />
-      </Route>
+          <Route path={["/discover"]}>
+            <SongBrowser />
+          </Route>
+          <Route path='/upload'>
+            <UploadPage/>
+          </Route>
+          <Route path='/user/:username'>
+          </Route>
+          <Route path='"/song/:songId"'>
+          </Route>
         </Switch>
       )}
     </>
