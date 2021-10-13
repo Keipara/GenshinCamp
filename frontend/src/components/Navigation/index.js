@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
+import logo from './toppng.com-soundcloud-png-white-banner-free-library-soundcloud-logo-2201x1255.png'
 import './Navigation.css';
 
 function Navigation({ isLoaded }){
@@ -11,8 +12,12 @@ function Navigation({ isLoaded }){
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <ProfileButton user={sessionUser} />
+      <>
+        <NavLink to="/upload"> Upload </NavLink>
+        <ProfileButton className='profile-button' user={sessionUser} />
+      </>
     );
+
   } else {
     sessionLinks = (
       <>
@@ -20,13 +25,18 @@ function Navigation({ isLoaded }){
         <NavLink to="/signup">Sign Up</NavLink>
       </>
     );
+
   }
 
   return (
     <div className='nav'>
-        <NavLink exact to="/">Home</NavLink>
+        <div className='left-nav'>
+          <img src={logo} alt='logo'></img>
+          <NavLink exact to="/discover">Home</NavLink>
+        </div>
+        <input></input>
         <div className='right-nav'>
-        {isLoaded && sessionLinks}
+          {isLoaded && sessionLinks}
         </div>
     </div>
   );

@@ -35,11 +35,12 @@ router.post(
         return next(err);
       }
 
-      await setTokenCookie(res, user);
+      
 
+      await setTokenCookie(res, user);
       return res.json({
         user,
-      });
+      })
     }),
   );
 
