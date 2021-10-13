@@ -7,6 +7,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import SongBrowser from "./components/MainPage/index";
 import UploadPage from "./components/UploadPage";
+import UserSongBrowser from "./components/UserPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,7 +30,8 @@ function App() {
           <Route path='/upload'>
             <UploadPage/>
           </Route>
-          <Route path='/user/:username'>
+          <Route path='/artist/:userId'>
+            <UserSongBrowser/>
           </Route>
           <Route path='"/song/:songId"'>
           </Route>

@@ -2,51 +2,51 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { getSongs } from '../../store/songs';
+import { getUserSongs } from '../../store/userSongs';
 
-const SongBrowser = () => {
-  const { songId } = useParams();
+const UserSongBrowser = () => {
+  const {songId} = useParams();
   const {userId} = useParams()
 
-  const songs = Object.values(useSelector(state => state.songs))
+  const userSongs = Object.values(useSelector(state => state.userSongs))
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getSongs())
-  }, [dispatch])
+    dispatch(getUserSongs(userId))
+  }, [dispatch, userId])
 
   return (
     <main>
       <nav>
-        {songs.map((song) => {
+        {userSongs.map((userSong) => {
           return (
             <>
-              <NavLink key={song.name} to={`/song/${song.id}`}>
+              <NavLink key={userSong.title} to={`/song/${userSong.id}`}>
                 <div
                   className={
-                    Number.parseInt(songId) === song.id
+                    Number.parseInt(songId) === userSong.id
                       ? "nav-entry is-selected"
                       : "nav-entry"
                   }>
 
                   <div>
                     <div className="primary-text">
-                        {song.title}
+                        {userSong.title}
                     </div>
                   </div>
                 </div>
               </NavLink>
-              <NavLink key={song.User.username} to={`/artist/${song.userId}`}>
+              <NavLink key={userSong.User.username} to={`/artist/${userSong.userId}`}>
               <div
                 className={
-                  Number.parseInt(userId) === song.userId
+                  Number.parseInt(userId) === userSong.userId
                     ? "nav-entry is-selected"
                     : "nav-entry"
                 }>
 
                 <div>
                   <div className="primary-text">
-                      {song.User.username}
+                      {userSong.User.username}
                   </div>
                 </div>
               </div>
@@ -59,4 +59,4 @@ const SongBrowser = () => {
   );
 };
 
-export default SongBrowser;
+export default UserSongBrowser;
