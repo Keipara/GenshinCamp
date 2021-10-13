@@ -42,4 +42,12 @@ router.post(
       });
     }),
   );
+
+//get artists of discover page's songs
+
+  router.get('/discover', asyncHandler(async function(_req, res) {
+    const users = await User.findAll();
+    return res.json(users);
+  }));
+
 module.exports = router;

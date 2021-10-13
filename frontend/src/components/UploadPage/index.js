@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
-import * as sessionActions from "../../store/session";
+import React from "react";
+// import { useDispatch, useSelector } from "react-redux";
+// import { Redirect } from "react-router-dom";
+// import * as sessionActions from "../../store/session";
 // import './SignupForm.css';
 
 function UploadPage() {
@@ -29,7 +29,7 @@ function UploadPage() {
   // };
 
   return (
-    <div>Hello world</div>
+    <div>Hello from uplaod</div>
     // <form onSubmit={handleSubmit}>
     //   <div className="signup">
     //     <ul>
