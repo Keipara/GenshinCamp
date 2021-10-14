@@ -3,7 +3,6 @@ import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import './LoginForm.css';
 import { useHistory } from "react-router-dom";
-import { getSongs } from '../../store/songs';
 
 function LoginForm() {
   const dispatch = useDispatch();
