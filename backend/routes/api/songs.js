@@ -30,16 +30,28 @@ router.get('/artist/:userId(\\d+)', asyncHandler(async function(req, res) {
     return res.json(songs);
   }));
 
-  router.post('/upload', singleMulterUpload('file'), asyncHandler(async (req, res) => {
-    const songFile = await singlePublicFileUpload(req.body.file);
+  router.post('/upload', requireAuth, singleMulterUpload('file'), asyncHandler(async (req, res) => {
+    console.log('req.file HERE!!!!:', req.file)
+    const songFile = await singlePublicFileUpload(req.file);
     const {title} = req.body;
     const newSong = await Song.create({
       title,
-      userId: res.locals.user.id,
+      userId: req.user.id,
       songFile
     });
+    const song = await Song.findByPk(newSong.id, {
+      include: [{
+        model: User
+      }]
+    })
 
-    res.json(newSong);
+    res.json(song);
+}))
+
+router.put('/song/:id(\\d+)', asyncHandler(async (req, res) => {
+  const song = await Song.findByPk(+req.params.id);
+  await song.update(req.body);
+  res.json(song);
 }))
 
 module.exports = router;

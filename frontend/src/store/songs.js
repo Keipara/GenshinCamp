@@ -22,10 +22,11 @@ export const getSongs = () => async dispatch => {
   }
 };
 
-export const addSong = (file) => async (dispatch) => {
+export const addSong = (data) => async (dispatch) => {
+  const { title, songFile } = data;
   const formData = new FormData();
-  formData.append('file', file);
-  console.log(file);
+  formData.append('file', songFile);
+  formData.append('title', title);
 
   // for single file
   const res = await csrfFetch(`/api/songs/upload`, {
@@ -33,7 +34,7 @@ export const addSong = (file) => async (dispatch) => {
     headers: {
       "Content-Type": "multipart/form-data",
     },
-    body: formData,
+    body: formData
   });
 
   const newSong = await res.json();
@@ -55,7 +56,7 @@ const songReducer = (state = initialState, action) => {
       return allSongs;
     }
     case ADD:
-      return { ...state, user: action.payload };
+      return { ...state, [action.song.id]:action.song};
       default:
       return state;
     }
