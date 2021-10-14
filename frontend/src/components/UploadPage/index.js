@@ -1,80 +1,68 @@
-import React from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { Redirect } from "react-router-dom";
-// import * as sessionActions from "../../store/session";
-// import './SignupForm.css';
+import React, { useState, useEffect } from "react";
+import { addSong } from "../../store/songs";
+import { useDispatch, useSelector } from "react-redux";
 
-function UploadPage() {
-  // const dispatch = useDispatch();
-  // const sessionUser = useSelector((state) => state.session.user);
-  // const [email, setEmail] = useState("");
-  // const [username, setUsername] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [confirmPassword, setConfirmPassword] = useState("");
+const UploadPage = () => {
+  const [title, setTitle] = useState("");
+  const [songFile, setSongFile] = useState("");
+  const userId = useSelector((state) => state.session.user?.userId);
+  const dispatch = useDispatch();
   // const [errors, setErrors] = useState([]);
 
-  // if (sessionUser) return <Redirect to="/discover" />;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // let newErrors = [];
+    return dispatch(addSong({title, songFile}, userId))
+  };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   if (password === confirmPassword) {
-  //     setErrors([]);
-  //     return dispatch(sessionActions.signup({ email, username, password }))
-  //       .catch(async (res) => {
-  //         const data = await res.json();
-  //         if (data && data.errors) setErrors(data.errors);
-  //       });
-  //   }
-  //   return setErrors(['Confirm Password field must be the same as the Password field']);
-  // };
+  // for multiple file upload
+  //   const updateFiles = (e) => {
+  //     const files = e.target.files;
+  //     setfiles(files);
+  //   };
 
   return (
-    <div>Hello from uplaod</div>
-    // <form onSubmit={handleSubmit}>
-    //   <div className="signup">
-    //     <ul>
-    //       {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-    //     </ul>
-    //     <label>
-    //       u
-    //       <input
-    //         type="text"
-    //         value={email}
-    //         onChange={(e) => setEmail(e.target.value)}
-    //         required
-    //       />
-    //     </label>
-    //     <label>
-    //       u
-    //       <input
-    //         type="text"
-    //         value={username}
-    //         onChange={(e) => setUsername(e.target.value)}
-    //         required
-    //       />
-    //     </label>
-    //     <label>
-    //       u
-    //       <input
-    //         type="password"
-    //         value={password}
-    //         onChange={(e) => setPassword(e.target.value)}
-    //         required
-    //       />
-    //     </label>
-    //     <label>
-    //       u
-    //       <input
-    //         type="password"
-    //         value={confirmPassword}
-    //         onChange={(e) => setConfirmPassword(e.target.value)}
-    //         required
-    //       />
-    //     </label>
-    //     <button type="submit">Uploade</button>
-    //   </div>
-    // </form>
+    <div>
+      <h1>Submit Form</h1>
+      <form
+        style={{ display: "flex", flexFlow: "column" }}
+        onSubmit={handleSubmit}
+      >
+        <label>
+          <input
+            type="text"
+            placeholder="title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </label>
+        {/* <label>
+          <input
+            type="userId"
+            placeholder="userId"
+            value={userId}
+            onChange={(e) => setUserId(e.target.value)}
+          />
+        </label> */}
+        <label>
+          <input type="file" onChange={setSongFile} />
+        </label>
+        <button type="submit">Upload</button>
+      </form>
+      {/* <div>
+        {user && (
+          <div>
+            <h1>{user.title}</h1>
+            <img
+              style={{ width: "150px" }}
+              src={user.profilefileUrl}
+              alt="profile"
+            />
+          </div>
+        )}
+      </div> */}
+    </div>
   );
-}
+};
 
 export default UploadPage;

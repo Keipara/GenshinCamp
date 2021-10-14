@@ -2,11 +2,9 @@ const { requireAuth } = require("../../utils/auth");
 
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-// const { check, validationResult } = require('express-validator');
+const {singleMulterUpload, singlePublicFileUpload} = require('../../awsS3')
 const { Song } = require('../../db/models');
 const { User } = require('../../db/models');
-
-// const SongRepository = require('../../db/song-repository');
 
 const router = express.Router();
 
@@ -31,5 +29,17 @@ router.get('/artist/:userId(\\d+)', asyncHandler(async function(req, res) {
     });
     return res.json(songs);
   }));
+
+  router.post('/upload', singleMulterUpload('file'), asyncHandler(async (req, res) => {
+    const songFile = await singlePublicFileUpload(req.file);
+    const {title} = req.body;
+    const newSong = await Song.create({
+      title,
+      userId: res.locals.user.id,
+      songFile
+    });
+
+    res.json(newSong);
+}))
 
 module.exports = router;
