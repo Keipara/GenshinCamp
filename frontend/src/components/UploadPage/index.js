@@ -21,6 +21,11 @@ const UploadPage = () => {
   //     setfiles(files);
   //   };
 
+  const updateFile = (e) => {
+    const file = e.target.files[0];
+    if (file) setSongFile(file);
+  };
+
   return (
     <div>
       <h1>Submit Form</h1>
@@ -45,7 +50,7 @@ const UploadPage = () => {
           />
         </label> */}
         <label>
-          <input type="file" onChange={setSongFile} />
+          <input type="file" onChange={updateFile} />
         </label>
         <button type="submit">Upload</button>
       </form>
