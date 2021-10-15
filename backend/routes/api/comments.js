@@ -1,21 +1,22 @@
 // const { requireAuth } = require("../../utils/auth");
+
 // const express = require('express');
 // const asyncHandler = require('express-async-handler');
-// const { Song } = require('../../db/models');
+// const {singleMulterUpload, singlePublicFileUpload} = require('../../awsS3')
+// const { Comment } = require('../../db/models');
 // const { User } = require('../../db/models');
 
 // const router = express.Router();
 
-// router.post("/:id(\\d+)/comments", requireAuth, asyncHandler(async (req, res) => {
-//     const { body } = req.body;
-//     const songId = req.params.id;
-//     const userId = req.user.id;
-//     console.log(userId)
-//     const comments = await Comment.create({
-//       userId,
-//       songId,
-//       body,
-//     });
-//     return res.json(comments);
-//   })
-// );
+// router.delete('/song/:id', asyncHandler(async (req, res) => {
+//     const songId = +req.params.id;
+//     const songComments = await Comment.findAll({
+//         where: {
+//           songId: songId
+//         }
+//       });
+//     await songComments.destroy();
+//     res.json({ message: 'Successfully deleted!' })
+//   }))
+
+//   module.exports = router;
