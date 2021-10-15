@@ -20,38 +20,46 @@ const SongBrowser = () => {
       <nav>
         {songs.map((song) => {
           return (
-            <>
-              <NavLink key={song.name} to={`/song/${song.id}`}>
+            <figure>
+              <figcaption>
+                <NavLink key={song.name} to={`/song/${song.id}`}>
+                  <div
+                    className={
+                      Number.parseInt(songId) === song.id
+                        ? "nav-entry is-selected"
+                        : "nav-entry"
+                    }>
+
+                    <div>
+                      <div className="primary-text">
+                          {song.title}
+                      </div>
+                    </div>
+                  </div>
+                </NavLink>
+                <NavLink key={song.User.username} to={`/artist/${song.userId}`}>
                 <div
                   className={
-                    Number.parseInt(songId) === song.id
+                    Number.parseInt(userId) === song.userId
                       ? "nav-entry is-selected"
                       : "nav-entry"
                   }>
 
                   <div>
                     <div className="primary-text">
-                        {song.title}
+                        {song.User.username}
                     </div>
                   </div>
                 </div>
               </NavLink>
-              <NavLink key={song.User.username} to={`/artist/${song.userId}`}>
-              <div
-                className={
-                  Number.parseInt(userId) === song.userId
-                    ? "nav-entry is-selected"
-                    : "nav-entry"
-                }>
-
-                <div>
-                  <div className="primary-text">
-                      {song.User.username}
-                  </div>
-                </div>
-              </div>
-            </NavLink>
-          </>
+            </figcaption>
+            <audio
+              controls
+              src={song.songFile}>
+              Your browser does not support the
+              <code>audio</code> element.
+            </audio>
+          </figure>
           );
         })}
       </nav>
