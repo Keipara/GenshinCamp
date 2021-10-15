@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import SongBrowser from "./components/MainPage/index";
 import UploadPage from "./components/UploadPage";
 import UserSongBrowser from "./components/UserPage";
+import SingleSongBrowser from "./components/SongPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,7 +34,8 @@ function App() {
           <Route path='/artist/:userId'>
             <UserSongBrowser/>
           </Route>
-          <Route path='"/song/:songId"'>
+          <Route path='/song/:songId'>
+            <SingleSongBrowser/>
           </Route>
         </Switch>
       )}

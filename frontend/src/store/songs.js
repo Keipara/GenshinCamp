@@ -2,6 +2,7 @@ import { csrfFetch } from "./csrf";
 
 const LOAD = 'songs/LOAD';
 const ADD = 'songs/ADD';
+const UPDATE = 'songs/UPDATE'
 
 const load = list => ({
   type: LOAD,
@@ -10,6 +11,11 @@ const load = list => ({
 
 const add = song => ({
   type: ADD,
+  song
+})
+
+const update = song => ({
+  type: UPDATE,
   song
 })
 
@@ -41,6 +47,20 @@ export const addSong = (data) => async (dispatch) => {
   dispatch(add(newSong));
 };
 
+export const updateSong = (payload) => async(dispatch) => {
+  const {title, songId} = payload;
+  const response = await csrfFetch(`/api/songs/song/${songId}`, {
+      method: 'PUT',
+      body: JSON.stringify({title})
+  })
+
+  if (response.ok) {
+      const newSongTitle = await response.json();
+      dispatch(update(newSongTitle));
+      return newSongTitle;
+  }
+}
+
 const initialState = {
 };
 
@@ -57,6 +77,11 @@ const songReducer = (state = initialState, action) => {
     }
     case ADD:
       return { ...state, [action.song.id]:action.song};
+    case UPDATE: {
+        delete state[action.song.id];
+        state[action.song.id] = action.song
+        return state;
+    }
       default:
       return state;
     }
