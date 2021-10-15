@@ -4,6 +4,7 @@ import { NavLink, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getSongs } from '../../store/songs';
 import EditFormModal from '../EdtiFormModal';
+import { removeSong } from '../../store/songs';
 
 
 const SingleSongBrowser = () => {
@@ -21,7 +22,7 @@ const SingleSongBrowser = () => {
   return (
     <main>
       <nav>
-            <>
+            <div>
               <NavLink key={song.title} to={`/song/${song.id}`}>
                 <div
                   className={
@@ -58,7 +59,8 @@ const SingleSongBrowser = () => {
 
                 </NavLink>
             </>
-          </>
+              <button onClick={removeSong(songId)}>delete</button>
+          </div>
       </nav>
     </main>
   )

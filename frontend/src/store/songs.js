@@ -68,12 +68,12 @@ export const updateSong = (payload) => async(dispatch) => {
 }
 
 export const removeSong = (songId) => async(dispatch) => {
-  const response = await csrfFetch(`/api/song/song/${songId}`, {
+  const response = await csrfFetch(`/api/songs/song/${songId}`, {
       method: 'delete'
   });
 
   if (response.ok) {
-      dispatch(removeSong(songId))
+      dispatch(remove(songId))
   }
 }
 
