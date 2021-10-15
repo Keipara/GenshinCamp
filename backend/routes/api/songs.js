@@ -31,7 +31,6 @@ router.get('/artist/:userId(\\d+)', asyncHandler(async function(req, res) {
   }));
 
   router.post('/upload', requireAuth, singleMulterUpload('file'), asyncHandler(async (req, res) => {
-    console.log('req.file HERE!!!!:', req.file)
     const songFile = await singlePublicFileUpload(req.file);
     const {title} = req.body;
     const newSong = await Song.create({
