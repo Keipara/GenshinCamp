@@ -23,6 +23,8 @@ const SingleSongBrowser = () => {
     <main>
       <nav>
             <div>
+            <figure>
+              <figcaption>
               <NavLink key={song.title} to={`/song/${song.id}`}>
                 <div
                   className={
@@ -53,6 +55,14 @@ const SingleSongBrowser = () => {
                 </div>
               </div>
             </NavLink>
+            </figcaption>
+            <audio
+              controls
+              src={song.songFile}>
+              Your browser does not support the
+              <code>audio</code> element.
+            </audio>
+          </figure>
             <>
                 <EditFormModal/>
                 <NavLink to={`/song/${song.id}`}>

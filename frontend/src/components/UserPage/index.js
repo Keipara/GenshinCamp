@@ -21,6 +21,8 @@ const UserSongBrowser = () => {
         {userSongs.map((userSong) => {
           return (
             <>
+            <figure>
+              <figcaption>
               <NavLink key={userSong.title} to={`/song/${userSong.id}`}>
                 <div
                   className={
@@ -51,6 +53,14 @@ const UserSongBrowser = () => {
                 </div>
               </div>
             </NavLink>
+            </figcaption>
+            <audio
+              controls
+              src={userSong.songFile}>
+              Your browser does not support the
+              <code>audio</code> element.
+            </audio>
+          </figure>
           </>
           );
         })}
