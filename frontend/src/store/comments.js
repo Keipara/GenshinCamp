@@ -1,11 +1,29 @@
-// import { csrfFetch } from "./csrf";
+import { csrfFetch } from "./csrf";
 
 const LOAD = 'comments/LOAD';
+const ADD = 'comments/ADD';
+const UPDATE = 'comments/UPDATE'
+const REMOVE = 'comments/REMOVE';
 
 const load = list => ({
     type: LOAD,
     list,
   });
+
+  const add = song => ({
+    type: ADD,
+    song
+  })
+
+  const update = song => ({
+    type: UPDATE,
+    song
+  })
+
+  const remove = songId => ({
+    type: REMOVE,
+    songId
+  })
 
   export const getComments = (songId) => async dispatch => {
     const response = await fetch(`/api/songs/song/${songId}`);
@@ -18,6 +36,47 @@ const load = list => ({
 
   const initialState = {
 };
+
+export const addComment = (payload) => async(dispatch) => {
+    const {body, songId} = payload;
+    const response = await csrfFetch(`/api/songs/song/${songId}`, {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({body})
+    })
+
+    if (response.ok) {
+        const newBody = await response.json();
+        dispatch(update(newBody));
+    }
+}
+
+export const updateComment = (payload) => async(dispatch) => {
+    const {body, songId, commentId} = payload;
+    const response = await csrfFetch(`/api/songs/song/${songId}/${commentId}`, {
+        method: 'PUT',
+        body: JSON.stringify({body})
+    })
+
+    if (response.ok) {
+        const newCommentBody = await response.json();
+        dispatch(update(newCommentBody));
+        return newCommentBody;
+    }
+  }
+
+export const removeComment = id => async(dispatch) => {
+    const response = await csrfFetch(`/api/comments/${id}`, {
+        method: 'delete'
+    })
+
+    if (response.ok) {
+        const song = await response.json();
+        dispatch(update(song));
+    }
+}
 
 const commentReducer = (state = initialState, action) => {
     switch (action.type) {

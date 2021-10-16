@@ -6,6 +6,7 @@ import { getSongs } from '../../store/songs';
 import EditFormModal from '../EdtiFormModal';
 import { removeSong } from '../../store/songs';
 import { getComments } from '../../store/comments';
+import EditCommentModal from '../EditCommentModal';
 
 
 const SingleSongBrowser = () => {
@@ -86,9 +87,6 @@ const SingleSongBrowser = () => {
                 {comments.map((comment) => {
                   return (
                     <div>
-                      <li>
-                        {comment?.body}
-                      </li>
                       <NavLink key={comment?.User?.username} to={`/artist/${comment?.User?.id}`}>
                       {/* <div
                         className={
@@ -103,6 +101,12 @@ const SingleSongBrowser = () => {
                           </div>
                         </div>
                     </NavLink>
+                      <li>
+                        {comment?.body}
+                      </li>
+                    <>
+                      <EditCommentModal commentId={comment.id}/>
+                    </>
                     </div>
                   )
                 })}
