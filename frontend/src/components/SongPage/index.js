@@ -8,6 +8,7 @@ import { removeSong } from '../../store/songs';
 import { getComments } from '../../store/comments';
 import EditCommentModal from '../EditCommentModal';
 import { addComment } from '../../store/comments';
+import { removeComment } from '../../store/comments';
 
 
 const SingleSongBrowser = () => {
@@ -151,6 +152,10 @@ const SingleSongBrowser = () => {
                     <>
                       <EditCommentModal commentId={comment.id}/>
                     </>
+                    <button
+                      onClick={removeComment(comment.id, songId)}>
+                      delete
+                    </button>
                     </div>
                   )
                 })}
