@@ -1,6 +1,7 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const songsRouter = require('./songs.js')
+const { requireAuth } = require("../../utils/auth");
 
 const { Comment, Song, User } = require('../../db/models');
 
@@ -19,9 +20,15 @@ songsRouter.get('/song/:songId(\\d+)', asyncHandler(async function(req, res) {
     return res.json(comments);
   }));
 
-  songsRouter.post('/song/:songId(\\d+)', asyncHandler(async (req, res) => {
-    const newComment = await Comment.create(req.body);
-    const comment = await Song.findByPk(newComment.songId, {
+  songsRouter.post('/song/:songId(\\d+)', requireAuth, asyncHandler(async (req, res) => {
+    const songId = parseInt(req.params.songId, 10);
+    const {body} = req.body;
+    const newComment = await Comment.create({
+        songId,
+        userId: req.user.id,
+        body
+    });
+    const comment = await Comment.findByPk(newComment.id, {
         include: [{
             model: User,
             model: Song

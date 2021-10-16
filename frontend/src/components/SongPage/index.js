@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -7,17 +7,16 @@ import EditFormModal from '../EdtiFormModal';
 import { removeSong } from '../../store/songs';
 import { getComments } from '../../store/comments';
 import EditCommentModal from '../EditCommentModal';
+import { addComment } from '../../store/comments';
 
 
 const SingleSongBrowser = () => {
+  const [body, setBody] = useState("");
   const { songId } = useParams();
   const songArray = useSelector(state => Object.values(state.songs[songId]))
   const userId = songArray[3]
   const comments = useSelector(state => Object.values(state.comments))
-  console.log(songArray)
-  console.log(comments)
-  console.log(userId)
-
+  console.log(songId)
 
   const songs = Object.values(useSelector(state => state.songs))
   const song = songs.find(song => song.id === parseInt(songId));
@@ -30,6 +29,12 @@ const SingleSongBrowser = () => {
   useEffect(() => {
     dispatch(getComments(songId))
   }, [dispatch, songId])
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // let newErrors = [];
+    return dispatch(addComment({body, songId}))
+  };
 
   return (
     <main>
@@ -83,6 +88,45 @@ const SingleSongBrowser = () => {
             </>
               <button onClick={removeSong(songId)}>delete</button>
           </div>
+
+          <div>
+
+          <form
+            style={{ display: "flex", flexFlow: "column" }}
+            onSubmit={handleSubmit}
+          >
+            <label>
+              <textarea
+                type="text"
+                placeholder="title"
+                value={body}
+                onChange={(e) => setBody(e.target.value)}
+              />
+            </label>
+            {/* <label>
+              <input
+                type="userId"
+                placeholder="userId"
+                value={userId}
+                onChange={(e) => setUserId(e.target.value)}
+              />
+            </label> */}
+            <button type="submit">Comment</button>
+          </form>
+          {/* <div>
+            {user && (
+              <div>
+                <h1>{user.title}</h1>
+                <img
+                  style={{ width: "150px" }}
+                  src={user.profilefileUrl}
+                  alt="profile"
+                />
+              </div>
+            )}
+          </div> */}
+        </div>
+
           <ul>
                 {comments.map((comment) => {
                   return (
