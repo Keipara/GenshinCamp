@@ -8,6 +8,10 @@ const SongBrowser = () => {
   const { songId } = useParams();
   const {userId} = useParams()
 
+  // const songArray =
+  // console.log(useSelector(state => Object.values(state.songs)))
+  // const userId = songArray[3]
+
   const songs = Object.values(useSelector(state => state.songs))
   const dispatch = useDispatch();
 
