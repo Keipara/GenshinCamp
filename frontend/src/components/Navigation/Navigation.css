@@ -24,3 +24,13 @@ img {
     height: 4vh;
     width: 7vh;
 }
+
+.search-div {
+    position: relative;
+}
+
+.search-dropdown {
+    position: absolute;
+    background-color: white;
+    z-index: 999999;
+}
