@@ -12,16 +12,17 @@ import { removeComment } from '../../store/comments';
 
 
 const SingleSongBrowser = () => {
-  const [body, setBody] = useState("");
+  const dispatch = useDispatch();
   const { songId } = useParams();
-  const songArray = useSelector(state => Object.values(state.songs[songId]))
-  const userId = songArray[3]
-  const comments = useSelector(state => Object.values(state.comments))
-  console.log(songId)
 
+  // Selectors
+  const songArrayTest = useSelector(state => (state.songs))
+  const comments = useSelector(state => Object.values(state.comments))
   const songs = Object.values(useSelector(state => state.songs))
   const song = songs.find(song => song.id === parseInt(songId));
-  const dispatch = useDispatch();
+
+  // State
+  const [body, setBody] = useState("");
 
   useEffect(() => {
     dispatch(getSongs(songId))
@@ -30,6 +31,14 @@ const SingleSongBrowser = () => {
   useEffect(() => {
     dispatch(getComments(songId))
   }, [dispatch, songId])
+
+  // Misc
+  console.log("Test: ", songArrayTest)
+  if(Object.keys(songArrayTest).length === 0) {
+    return <></>
+  }
+  const songArray = songArrayTest[songId]
+  const userId = songArray.userId;
 
   const handleSubmit = (e) => {
     e.preventDefault();
