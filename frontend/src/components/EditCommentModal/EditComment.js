@@ -3,6 +3,7 @@ import commentReducer, { updateComment } from "../../store/comments";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { useHistory } from "react-router";
+import './EditModal.css';
 
 function EditComment({commentId}) {
     const comments = Object.values(useSelector(state => state.comments))
@@ -31,22 +32,23 @@ function EditComment({commentId}) {
     //   };
 
     return (
-      <div>
+      <div className='modal'>
         <h1>Edit Comment</h1>
-        <form
-          style={{ display: "flex", flexFlow: "column" }}
-          onSubmit={handleSubmit}
-        >
-          <label>
-            <input
-              type="text"
-              placeholder="body"
-              value={body}
-              onChange={(e) => setBody(e.target.value)}
-            required/>
-          </label>
-          <button type="submit">Save</button>
-      </form>
+        <form className='form'
+            style={{ display: "flex", flexFlow: "column" }}
+            onSubmit={handleSubmit}>
+            <div className='form-div'>
+            <label>
+              <input
+                type="text"
+                placeholder="body"
+                value={body}
+                onChange={(e) => setBody(e.target.value)}
+              required/>
+            </label>
+            <button type="submit">Save</button>
+          </div>
+        </form>
       </div>
     );
   };

@@ -10,6 +10,7 @@ import EditCommentModal from '../EditCommentModal';
 import { addComment } from '../../store/comments';
 import { removeComment } from '../../store/comments';
 import { useHistory } from 'react-router-dom';
+import './SongPage.css';
 
 
 const SingleSongBrowser = () => {
@@ -122,8 +123,9 @@ let sessionCommentButtons = (comment) => {
   return (
     <main>
       <nav>
-            <div>
+        <div className='nav-container'>
             <figure>
+            <div className='song-pack'>
               <figcaption>
               <NavLink key={song.title} to={`/song/${song.id}`}>
                 <div
@@ -162,9 +164,9 @@ let sessionCommentButtons = (comment) => {
               Your browser does not support the
               <code>audio</code> element.
             </audio>
+          </div>
           </figure>
           {sessionSongButtons}
-          </div>
 
           <div>
 
@@ -174,8 +176,8 @@ let sessionCommentButtons = (comment) => {
           >
             <label>
               <textarea
+                className='comment-input'
                 type="text"
-                placeholder="title"
                 value={body}
                 onChange={(e) => setBody(e.target.value)}
               />
@@ -207,7 +209,7 @@ let sessionCommentButtons = (comment) => {
           <ul>
                 {comments.map((comment) => {
                   return (
-                    <div key={comment.id}>
+                    <div key={comment.id} className='full-comment'>
                       <NavLink to={`/artist/${comment?.User?.id}`}>
                       {/* <div
                         className={
@@ -222,7 +224,7 @@ let sessionCommentButtons = (comment) => {
                           </div>
                         </div>
                     </NavLink>
-                      <li>
+                      <li className='ind-comment'>
                         {comment?.body}
                       </li>
                       {sessionCommentButtons(comment)}
@@ -230,6 +232,7 @@ let sessionCommentButtons = (comment) => {
                   )
                 })}
           </ul>
+          </div>
       </nav>
     </main>
   )

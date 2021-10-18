@@ -1,0 +1,28 @@
+.search-dropdown {
+    background-color: rgb(236, 236, 236);
+    width: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+ ul {
+    list-style-type: none;
+ }
+
+ .primary-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+ }
+
+ li {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+ }
+
+ .search-dropdown > * > * > *{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+ }

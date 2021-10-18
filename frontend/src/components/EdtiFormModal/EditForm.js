@@ -3,6 +3,7 @@ import { updateSong } from "../../store/songs";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { useHistory } from "react-router";
+import './EditTitleModal.css';
 
 function EditForm() {
     const {songId} = useParams()
@@ -28,12 +29,13 @@ function EditForm() {
     //   };
 
     return (
-      <div>
+      <div className='modal'>
+
         <h1>Submit Form</h1>
         <form
           style={{ display: "flex", flexFlow: "column" }}
-          onSubmit={handleSubmit}
-        >
+          onSubmit={handleSubmit}>
+          <div className='form-div'>
           <label>
             <input
               type="text"
@@ -43,7 +45,9 @@ function EditForm() {
             required/>
           </label>
           <button type="submit">Save</button>
+          </div>
       </form>
+
       </div>
     );
   };

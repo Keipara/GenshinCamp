@@ -35,13 +35,14 @@ function LoginForm() {
         ))}
       </ul>
           <div className='form'>
+            <h2> Welcome Back! </h2>
             <label>
               Username or Email
               <input
                 type="text"
                 value={credential}
                 onChange={(e) => setCredential(e.target.value)}
-                required
+
               />
             </label>
             <label>
@@ -50,7 +51,7 @@ function LoginForm() {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                required
+
               />
             </label>
             <button type="submit">Log In</button>

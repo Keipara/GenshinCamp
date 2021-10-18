@@ -1,0 +1,30 @@
+.figure-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 50px;
+    width: 23vw;
+}
+
+nav {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.primary-text{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.secondary-text {
+    font-family: Arial, Helvetica, sans-serif;
+    color: grey;
+    font-size: smaller;
+}
+
+.secondary-text:hover {
+    color: orange;
+}

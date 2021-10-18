@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { NavLink, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getUserSongs } from '../../store/userSongs';
+import './UserPage.css';
 
 const UserSongBrowser = () => {
   const {userId} = useParams();
@@ -16,11 +17,11 @@ const UserSongBrowser = () => {
 
   return (
     <main>
-      <nav>
+      <nav className='user-songs'>
         {userSongs.map((userSong) => {
           return (
             <>
-            <figure>
+            <figure className='each'>
               <figcaption>
               <NavLink key={userSong.title} to={`/song/${userSong.id}`}>
                 <div

@@ -3,6 +3,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    background-color: rgb(236, 236, 236);
 }
 
 a {
@@ -12,7 +13,7 @@ a {
 .nav > * {
     color:black;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 16px;
+    font-size: medium;
     font-weight: bold;
 }
 
@@ -27,11 +28,18 @@ button:hover {
 button {
 	background: none;
 	color: inherit;
-	border: none;
+	border: solid, 1px, grey;
 	padding: 0;
 	font: inherit;
 	cursor: pointer;
 	outline: inherit;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: medium;
+
+}
+
+.right-nav > button {
+    width: 20vh;
 }
 
 .left-nav {

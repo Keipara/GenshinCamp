@@ -1,0 +1,15 @@
+.user-songs {
+
+        width: 35vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+}
+
+.each {
+    display: flex;
+        flex-direction: column;
+        align-items: center;
+}

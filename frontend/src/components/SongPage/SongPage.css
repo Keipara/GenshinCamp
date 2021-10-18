@@ -1,0 +1,25 @@
+.ind-comment {
+    color: black;
+}
+
+.song-pack {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.comment-input {
+    width: 40vw;
+}
+
+.full-comment {
+    margin-bottom: 20px;
+}
+
+.full-comment > *{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
