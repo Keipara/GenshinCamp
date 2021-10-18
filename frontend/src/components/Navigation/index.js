@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
-import logo from './toppng.com-soundcloud-png-white-banner-free-library-soundcloud-logo-2201x1255.png'
+import logo from '../images/maple.png'
 import './Navigation.css';
 import { useDispatch } from 'react-redux';
 import * as sessionActions from "../../store/session";
@@ -80,7 +80,7 @@ function Navigation({ isLoaded }){
   return (
     <div className='nav'>
         <div className='left-nav'>
-          <img src={logo} alt='logo'></img>
+          <img className='logo' src={logo} alt='logo'></img>
           <NavLink exact to="/discover">Discover</NavLink>
         </div>
           <div className='search-div'
