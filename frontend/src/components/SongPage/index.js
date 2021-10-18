@@ -37,7 +37,6 @@ const SingleSongBrowser = () => {
   }, [dispatch, songId])
 
   // Misc
-  console.log("Test: ", songArrayTest)
   if(Object.keys(songArrayTest).length === 0) {
     return <></>
   }

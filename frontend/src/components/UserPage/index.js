@@ -7,10 +7,7 @@ import { getUserSongs } from '../../store/userSongs';
 const UserSongBrowser = () => {
   const {userId} = useParams();
   const {songId} = useParams();
-  // const songArray = useSelector(state => Object.values(state.songs[userId]))
-  // const songId = songArray[0]
   const userSongs = Object.values(useSelector(state => state.userSongs))
-  // console.log(songArray)
   const dispatch = useDispatch();
 
   useEffect(() => {
