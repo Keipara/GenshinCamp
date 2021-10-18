@@ -5,7 +5,9 @@ import { useParams } from "react-router";
 import { useHistory } from "react-router";
 
 function EditComment({commentId}) {
-    const [body, setBody] = useState('')
+    const comments = Object.values(useSelector(state => state.comments))
+    const comment = comments.find(comment => comment.id === parseInt(commentId));
+    const [body, setBody] = useState(comment.body)
     const {songId} = useParams()
 
     const dispatch = useDispatch();

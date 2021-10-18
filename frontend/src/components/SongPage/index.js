@@ -9,17 +9,21 @@ import { getComments } from '../../store/comments';
 import EditCommentModal from '../EditCommentModal';
 import { addComment } from '../../store/comments';
 import { removeComment } from '../../store/comments';
+import { useHistory } from 'react-router-dom';
 
 
 const SingleSongBrowser = () => {
   const dispatch = useDispatch();
   const { songId } = useParams();
+  const history = useHistory()
+  const sessionUser = useSelector(state => state.session.user);
 
   // Selectors
   const songArrayTest = useSelector(state => (state.songs))
   const comments = useSelector(state => Object.values(state.comments))
   const songs = Object.values(useSelector(state => state.songs))
   const song = songs.find(song => song.id === parseInt(songId));
+  const loggedUserId = useSelector((state) => state.session.user?.id);
 
   // State
   const [body, setBody] = useState("");
@@ -40,11 +44,58 @@ const SingleSongBrowser = () => {
   const songArray = songArrayTest[songId]
   const userId = songArray.userId;
 
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async(e) => {
     e.preventDefault();
     // let newErrors = [];
-    return dispatch(addComment({body, songId}))
+    await dispatch(addComment({body, songId}))
+    window.location.href = window.location.href;
   };
+
+  const handleClickComment = async (e, comment) => {
+    e.preventDefault();
+    // let newErrors = [];
+    await dispatch(removeComment(comment.id, songId))
+    window.location.reload()
+  };
+
+  const handleClickSong = async (e) => {
+    e.preventDefault();
+    // let newErrors = [];
+    await dispatch(removeSong(songId))
+    history.push(`/artist/${userId}`)
+  };
+
+  let sessionSongButtons;
+  if (song.User.id === sessionUser.id) {
+    sessionSongButtons = (
+      <div>
+              <>
+                  <EditFormModal/>
+                  <NavLink to={`/song/${song.id}`}>
+
+                  </NavLink>
+              </>
+                <button onClick={handleClickSong}>delete</button>
+            </div>
+    )
+  }
+
+let sessionCommentButtons = (comment) => {
+  if (comment.User.id === sessionUser.id) {
+    let renderCommentButtons = (
+      <div>
+       <>
+         <EditCommentModal commentId={comment.id}/>
+       </>
+       <button onClick={(e) => { handleClickComment(e, comment)}}>
+           delete
+       </button>
+      </div>
+    )
+    return renderCommentButtons
+  }
+}
 
   return (
     <main>
@@ -90,13 +141,7 @@ const SingleSongBrowser = () => {
               <code>audio</code> element.
             </audio>
           </figure>
-            <>
-                <EditFormModal/>
-                <NavLink to={`/song/${song.id}`}>
-
-                </NavLink>
-            </>
-              <button onClick={removeSong(songId)}>delete</button>
+          {sessionSongButtons}
           </div>
 
           <div>
@@ -158,13 +203,7 @@ const SingleSongBrowser = () => {
                       <li>
                         {comment?.body}
                       </li>
-                    <>
-                      <EditCommentModal commentId={comment.id}/>
-                    </>
-                    <button
-                      onClick={removeComment(comment.id, songId)}>
-                      delete
-                    </button>
+                      {sessionCommentButtons(comment)}
                     </div>
                   )
                 })}

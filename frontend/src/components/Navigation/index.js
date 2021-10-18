@@ -46,9 +46,7 @@ function Navigation({ isLoaded }){
   };
 
   const handleInputClick = () => {
-    console.log(search)
     if (search.length) {
-      console.log('peepee')
       setRenderDropdown(true)
     }
   }

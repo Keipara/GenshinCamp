@@ -73,7 +73,7 @@ export const removeSong = (songId) => async(dispatch) => {
   });
 
   if (response.ok) {
-      dispatch(remove(songId))
+      remove(songId)
   }
 }
 

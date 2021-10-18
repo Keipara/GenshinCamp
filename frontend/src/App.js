@@ -9,32 +9,70 @@ import SongBrowser from "./components/MainPage/index";
 import UploadPage from "./components/UploadPage";
 import UserSongBrowser from "./components/UserPage";
 import SingleSongBrowser from "./components/SongPage";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import HomePage from "./components/HomePage";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+  const sessionUser = useSelector(state => state.session.user);
+  const history = useHistory();
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
+
+  let sessionLink;
+  if (sessionUser) {
+    sessionLink = (
+      <>
+        <UploadPage/>
+      </>
+    )
+  } else {
+    sessionLink = (
+      <>
+        {history.push('/signup')}
+      </>
+    )
+  }
+
+  let sessionLinkHome;
+  if (sessionUser) {
+    sessionLinkHome = (
+      <>
+        {history.push('/discover')}
+      </>
+    )
+  } else {
+    sessionLinkHome = (
+      <>
+        <HomePage/>
+      </>
+    )
+  }
 
   return (
     <>
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/signup">
+          <Route exact path='/'>
+            {sessionLinkHome}
+          </Route>
+          <Route exact path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path={["/discover"]}>
+          <Route exact path="/discover">
             <SongBrowser />
           </Route>
-          <Route path='/upload'>
-            <UploadPage/>
+          <Route exact path='/upload'>
+            {sessionLink}
           </Route>
-          <Route path='/artist/:userId'>
+          <Route exact path='/artist/:userId'>
             <UserSongBrowser/>
           </Route>
-          <Route path='/song/:songId'>
+          <Route exact path='/song/:songId'>
             <SingleSongBrowser/>
           </Route>
         </Switch>

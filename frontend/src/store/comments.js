@@ -74,7 +74,6 @@ export const removeComment = (commentId, songId) => async(dispatch) => {
 
     if (response.ok) {
         const song = await response.json();
-        dispatch(remove(song));
     }
 }
 

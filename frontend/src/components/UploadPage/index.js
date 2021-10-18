@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { addSong } from "../../store/songs";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 const UploadPage = () => {
   const [title, setTitle] = useState("");
   const [songFile, setSongFile] = useState("");
-  const userId = useSelector((state) => state.session.user?.userId);
+  const userId = useSelector((state) => state.session.user?.id);
+  const history = useHistory();
   const dispatch = useDispatch();
   // const [errors, setErrors] = useState([]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // let newErrors = [];
-    return dispatch(addSong({title, songFile}, userId))
+    await dispatch(addSong({title, songFile}, userId))
+    history.push(`/artist/${userId}`)
   };
 
   // for multiple file upload

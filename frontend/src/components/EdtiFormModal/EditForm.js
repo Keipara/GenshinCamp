@@ -5,8 +5,10 @@ import { useParams } from "react-router";
 import { useHistory } from "react-router";
 
 function EditForm() {
-    const [title, setTitle] = useState("");
     const {songId} = useParams()
+    const songs = Object.values(useSelector(state => state.songs))
+    const song = songs.find(song => song.id === parseInt(songId));
+    const [title, setTitle] = useState(song.title);
     const dispatch = useDispatch();
     const history = useHistory();
     // const [errors, setErrors] = useState([]);
@@ -37,7 +39,7 @@ function EditForm() {
           <label>
             <input
               type="text"
-              placeholder="title"
+              placeholder={"New Title"}
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
