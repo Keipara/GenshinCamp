@@ -43,7 +43,7 @@ function EditComment({commentId}) {
               placeholder="body"
               value={body}
               onChange={(e) => setBody(e.target.value)}
-            />
+            required/>
           </label>
           <button type="submit">Save</button>
       </form>

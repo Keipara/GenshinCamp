@@ -40,7 +40,7 @@ function EditForm() {
               placeholder={"New Title"}
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-            />
+            required/>
           </label>
           <button type="submit">Save</button>
       </form>

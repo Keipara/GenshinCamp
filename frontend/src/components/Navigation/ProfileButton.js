@@ -45,7 +45,6 @@ function ProfileButton({ user }) {
                       </div>
                 </NavLink>
               </li>
-              <li>{user.email}</li>
               <li>
                 <button  onClick={logout} >
                   <Link to='/'>

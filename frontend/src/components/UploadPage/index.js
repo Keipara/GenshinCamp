@@ -42,7 +42,7 @@ const UploadPage = () => {
             placeholder="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-          />
+          required/>
         </label>
         {/* <label>
           <input
@@ -53,7 +53,7 @@ const UploadPage = () => {
           />
         </label> */}
         <label>
-          <input type="file" onChange={updateFile} />
+          <input type="file" onChange={updateFile} required/>
         </label>
         <button type="submit">Upload</button>
       </form>

@@ -66,7 +66,17 @@ const SingleSongBrowser = () => {
   };
 
   let sessionSongButtons;
-  if (song.User.id === sessionUser.id) {
+  if (sessionUser === undefined) {
+    sessionSongButtons = (
+      <div>
+              <>
+                  <NavLink to={`/song/${song.id}`}>
+
+                  </NavLink>
+              </>
+            </div>
+    )
+  } else if (song.User.id === sessionUser.id) {
     sessionSongButtons = (
       <div>
               <>
@@ -78,10 +88,23 @@ const SingleSongBrowser = () => {
                 <button onClick={handleClickSong}>delete</button>
             </div>
     )
+  } else {
+    sessionSongButtons = (
+      <div>
+              <>
+                  <NavLink to={`/song/${song.id}`}>
+
+                  </NavLink>
+              </>
+            </div>
+    )
   }
 
 let sessionCommentButtons = (comment) => {
-  if (comment.User.id === sessionUser.id) {
+  if (sessionUser === undefined) {
+    sessionSongButtons = (
+      <></>
+    )}else if (comment.User.id === sessionUser.id) {
     let renderCommentButtons = (
       <div>
        <>
