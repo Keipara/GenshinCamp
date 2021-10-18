@@ -22,35 +22,35 @@ function App() {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
-  let sessionLink;
-  if (sessionUser) {
-    sessionLink = (
-      <>
-        <UploadPage/>
-      </>
-    )
-  } else {
-    sessionLink = (
-      <>
-        {history.push('/signup')}
-      </>
-    )
-  }
+  // let sessionLink;
+  // if (sessionUser) {
+  //   sessionLink = (
+  //     <>
+  //       <UploadPage/>
+  //     </>
+  //   )
+  // } else {
+  //   sessionLink = (
+  //     <>
+  //       {history.push('/signup')}
+  //     </>
+  //   )
+  // }
 
-  let sessionLinkHome;
-  if (sessionUser) {
-    sessionLinkHome = (
-      <>
-        {history.push('/discover')}
-      </>
-    )
-  } else {
-    sessionLinkHome = (
-      <>
-        <HomePage/>
-      </>
-    )
-  }
+  // let sessionLinkHome;
+  // if (sessionUser) {
+  //   sessionLinkHome = (
+  //     <>
+  //       {history.push('/discover')}
+  //     </>
+  //   )
+  // } else {
+  //   sessionLinkHome = (
+  //     <>
+  //       <HomePage/>
+  //     </>
+  //   )
+  // }
 
   return (
     <>
@@ -58,7 +58,8 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path='/'>
-            {sessionLinkHome}
+            {/* {sessionLinkHome} */}
+            <HomePage/>
           </Route>
           <Route exact path="/signup">
             <SignupFormPage />
@@ -67,7 +68,8 @@ function App() {
             <SongBrowser />
           </Route>
           <Route exact path='/upload'>
-            {sessionLink}
+            {/* {sessionLink} */}
+            <UploadPage/>
           </Route>
           <Route exact path='/artist/:userId'>
             <UserSongBrowser/>

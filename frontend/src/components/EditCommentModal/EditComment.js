@@ -17,11 +17,11 @@ function EditComment({commentId}) {
     const handleSubmit = async (e) => {
       e.preventDefault();
       // let newErrors = [];
-      history.push(`/song/${songId}`)
+      await dispatch(updateComment({body, songId, commentId}))
+      window.location.reload()
 
 
 
-      return dispatch(updateComment({body, songId, commentId}))
     };
 
     // for multiple file upload

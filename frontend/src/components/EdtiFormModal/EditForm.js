@@ -16,11 +16,9 @@ function EditForm() {
     const handleSubmit = async (e) => {
       e.preventDefault();
       // let newErrors = [];
-      history.push(`/song/${songId}`)
+      await dispatch(updateSong({title, songId}))
+      window.location.reload()
 
-
-
-      return dispatch(updateSong({title, songId}))
     };
 
     // for multiple file upload

@@ -49,7 +49,7 @@ const SingleSongBrowser = () => {
     e.preventDefault();
     // let newErrors = [];
     await dispatch(addComment({body, songId}))
-    window.location.href = window.location.href;
+    window.location.reload()
   };
 
   const handleClickComment = async (e, comment) => {
@@ -185,8 +185,8 @@ let sessionCommentButtons = (comment) => {
           <ul>
                 {comments.map((comment) => {
                   return (
-                    <div>
-                      <NavLink key={comment?.User?.username} to={`/artist/${comment?.User?.id}`}>
+                    <div key={comment.id}>
+                      <NavLink to={`/artist/${comment?.User?.id}`}>
                       {/* <div
                         className={
                           Number.parseInt(userId) === song.userId
