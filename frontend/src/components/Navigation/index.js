@@ -46,6 +46,8 @@ function Navigation({ isLoaded }){
   };
 
   const handleInputClick = () => {
+    history.push('/discover')
+
     if (search.length) {
       setRenderDropdown(true)
     }
@@ -79,25 +81,25 @@ function Navigation({ isLoaded }){
 
   return (
     <div className='nav'>
+
         <div className='left-nav'>
           <img className='logo' src={logo} alt='logo'></img>
           <NavLink exact to="/discover">Discover</NavLink>
         </div>
-          <div className='search-div'
-          onClick={handleSearchDivClick}
-          >
 
+          <div className='search-div' onClick={handleSearchDivClick}>
             <input
             value={search}
+            placeholder={'Search for a song'}
             onChange={(e) => setSearch(e.target.value)}
-            onClick={handleInputClick}
-            />
+            onClick={handleInputClick}/>
             {renderDropdown && <SearchDropdown search={search} setRenderDropdown={setRenderDropdown}/>}
-
           </div>
+
         <div className='right-nav'>
           {isLoaded && sessionLinks}
         </div>
+
     </div>
   );
 }

@@ -41,7 +41,7 @@ img {
 
 a {
     text-decoration: none;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: bold;
     height: 100%;
     width: 100%;
@@ -51,8 +51,12 @@ a {
     color:black;
 }
 
+a:hover {
+    color:orange
+}
+
 .signup-button:hover, .discover-button:hover {
-    background-color: rgb(168, 113, 11);
+    background-color: rgb(99, 99, 99);
 }
 
 .bottom-half {
@@ -65,6 +69,7 @@ a {
     width:100vh;
 
     background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .footer-container {
