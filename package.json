@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/Keipara/GenshinCamp/issues"
   },
-  "homepage": "https://github.com/Keipara/GenshinCamp#readme"
+  "homepage": "https://github.com/Keipara/GenshinCamp#readme",
+  "dependencies": {
+    "react-h5-audio-player": "^3.7.2"
+  }
 }
