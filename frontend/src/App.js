@@ -12,45 +12,19 @@ import SingleSongBrowser from "./components/SongPage";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import HomePage from "./components/HomePage";
+import AudioPlayer from 'react-h5-audio-player';
+
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   const sessionUser = useSelector(state => state.session.user);
+  const [currentlyPlaying, setCurrentlyPlaying] = useState('')
   const history = useHistory();
+
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
-
-  // let sessionLink;
-  // if (sessionUser) {
-  //   sessionLink = (
-  //     <>
-  //       <UploadPage/>
-  //     </>
-  //   )
-  // } else {
-  //   sessionLink = (
-  //     <>
-  //       {history.push('/signup')}
-  //     </>
-  //   )
-  // }
-
-  // let sessionLinkHome;
-  // if (sessionUser) {
-  //   sessionLinkHome = (
-  //     <>
-  //       {history.push('/discover')}
-  //     </>
-  //   )
-  // } else {
-  //   sessionLinkHome = (
-  //     <>
-  //       <HomePage/>
-  //     </>
-  //   )
-  // }
 
   return (
     <>
@@ -65,7 +39,7 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route exact path="/discover">
-            <SongBrowser />
+            <SongBrowser setCurrentlyPlaying={setCurrentlyPlaying}/>
           </Route>
           <Route exact path='/upload'>
             {/* {sessionLink} */}
@@ -79,6 +53,15 @@ function App() {
           </Route>
         </Switch>
       )}
+      <footer>
+        <div>
+          heuqwiyagdfuyiwehbf
+            <AudioPlayer
+            layout="horizontal"
+            src={currentlyPlaying}
+            />
+        </div>
+      </footer>
     </>
   );
 }

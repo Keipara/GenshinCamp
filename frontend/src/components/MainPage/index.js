@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { getSongs } from '../../store/songs';
 import './MainPage.css';
 
-const SongBrowser = () => {
+const SongBrowser = ({setCurrentlyPlaying}) => {
   const { songId } = useParams();
   const {userId} = useParams()
 
@@ -34,7 +34,9 @@ const SongBrowser = () => {
                           ? "nav-entry is-selected"
                           : "nav-entry"}>
 
-                        <div className="primary-text">
+                        <div className="primary-text"
+                        onClick={(e) => setCurrentlyPlaying(song.songFile)}
+                        >
                             {song.title}
                         </div>
                     </div>
@@ -55,7 +57,9 @@ const SongBrowser = () => {
               </figcaption>
               <audio
                 controls
-                src={song.songFile}>
+                src={song.songFile}
+                onClick={() => setCurrentlyPlaying(song.songFile)}
+                >
                 Your browser does not support the
                 <code>audio</code> element.
               </audio>

@@ -56,7 +56,6 @@ const SingleSongBrowser = () => {
     e.preventDefault();
     // let newErrors = [];
     await dispatch(removeComment(comment.id, songId))
-    window.location.reload()
   };
 
   const handleClickSong = async (e) => {
@@ -180,7 +179,8 @@ let sessionCommentButtons = (comment) => {
                 type="text"
                 value={body}
                 onChange={(e) => setBody(e.target.value)}
-              />
+                maxLength={200}
+              required/>
             </label>
             {/* <label>
               <input

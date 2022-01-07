@@ -9,6 +9,7 @@ const UserSongBrowser = () => {
   const {userId} = useParams();
   const {songId} = useParams();
   const userSongs = Object.values(useSelector(state => state.userSongs))
+  console.log(userSongs)
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -17,7 +18,7 @@ const UserSongBrowser = () => {
 
   return (
     <main>
-      <nav className='user-songs'>
+      <div className='user-songs'>
         {userSongs.map((userSong) => {
           return (
             <>
@@ -64,7 +65,7 @@ const UserSongBrowser = () => {
           </>
           );
         })}
-      </nav>
+      </div>
     </main>
   );
 };
